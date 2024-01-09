@@ -288,68 +288,33 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
+
+  // function and methods
+  void userTapped() {
+    print("Hi there");
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: Colors.purpleAccent,
-        appBar: AppBar(
-          title: Center(child: Text("My App Bar")),
-          backgroundColor: Colors.white,
-          elevation: 0,
-          leading: Icon(Icons.menu),
-          actions: [
-            IconButton(
-              onPressed: () {},
-              icon: Icon(Icons.logout),
-            ),
-          ],
-        ),
         body: Center(
-          child: Container(
-            height: 300,
-            width: 300,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  'assets/images/gemoy.png', // Replace with your image asset path
-                  height: 200,
-                  width: 200,
-                  // Adjust the width as needed
-                ),
-                SizedBox(
-                    height:
-                        16), // Add some space between the image and the icon
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Icon(
-                      Icons.favorite,
-                      color: Colors.pink,
-                      size: 24.0,
-                      semanticLabel: 'Text to announce in accessibility modes',
-                    ),
-                    Icon(
-                      Icons.audiotrack,
-                      color: Colors.green,
-                      size: 30.0,
-                    ),
-                    Icon(
-                      Icons.beach_access,
-                      color: Colors.blue,
-                      size: 36.0,
-                    ),
-                  ],
-                ),
-              ],
+          child: GestureDetector(
+            onTap: () {
+              const snackBar = SnackBar(content: Text('Tap'));
+
+              ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            },
+            // The custom button
+            child: Container(
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: Colors.lightBlue,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: const Text('My Button'),
             ),
           ),
         ),
